@@ -19,24 +19,26 @@ def banCheck(url):
 
     count = 0
     while not found:
-        randq = "?" + randomString(25)
-        # garabgq = random.
+        randq = "?" + randomString(25) # appending a garbage string in order to cold cache
         try:
             driver_.get(url + randq)
             soup = BeautifulSoup(driver_.page_source, "html.parser")
             this = soup.find(class_="content")
 
             if str(this.contents[1]) == "<p>You are not authorized to access this page.</p>":
+                # Wizards pages you can't access will consistently have this string. 
                 print("same old same old")
             else:
                 print("you're allowed acccess now")
                 found = True
             print(count)
+            
+            # if you want to limit your rate put a sleep somewhere in here 
             count += 1
 
         except:
-            found = True
-    playsound('Kill Bill Ironside Siren Sound.mp3')
+            pass
+    playsound('Kill Bill Ironside Siren Sound.mp3') # switch this with whatever
 
     driver_.quit()
 
