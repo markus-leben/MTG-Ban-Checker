@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from playsound import playsound
 import random
 import string
+import time
 
 
 def randomString(stringLength=10):
@@ -37,7 +38,7 @@ def banCheck(url):
             count += 1
 
         except:
-            pass
+            time.sleep(20) # prevents request spam in error case
     playsound('Kill Bill Ironside Siren Sound.mp3') # switch this with whatever
 
     driver_.quit()
