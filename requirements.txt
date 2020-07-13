@@ -6,6 +6,7 @@ configparser==5.0.0
 crayons==0.3.0
 idna==2.9
 playsound==1.2.2
+pytz==2020.1
 requests==2.23.0
 selenium==3.141.0
 soupsieve==2.0
