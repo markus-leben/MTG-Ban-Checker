@@ -45,4 +45,4 @@ def banCheck(url):
 
 
 if __name__ == "__main__":
-    banCheck("https://magic.wizards.com/en/articles/archive/news/june-1-2020-banned-and-restricted-announcement")
+    banCheck("https://magic.wizards.com/en/articles/archive/news/july-13-2020-banned-and-restricted-announcement")
