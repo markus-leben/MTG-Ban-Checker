@@ -5,6 +5,8 @@ from playsound import playsound
 import random
 import string
 import time
+import datetime
+import pytz
 
 
 def randomString(stringLength=10):
@@ -14,6 +16,17 @@ def randomString(stringLength=10):
 
 
 def banCheck(url):
+
+    tz = pytz.timezone('US/Pacific')
+    while True:
+        cali_now = datetime.datetime.now(tz).time()
+        start_oday = datetime.time(5, 0)
+        end_oday = datetime.time(17, 0)
+        if start_oday <= cali_now <= end_oday:
+            break
+        print('waiting for correct time')
+        time.sleep(60)
+        
     chrome_driver = ChromeDriverManager().install()
     driver_ = webdriver.Chrome(chrome_driver)
 
