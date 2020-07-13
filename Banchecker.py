@@ -12,6 +12,7 @@ def randomString(stringLength=10):
     letters = string.ascii_lowercase
     return ''.join(random.choice(letters) for i in range(stringLength))
 
+
 def banCheck(url):
     chrome_driver = ChromeDriverManager().install()
     driver_ = webdriver.Chrome(chrome_driver)
@@ -20,28 +21,29 @@ def banCheck(url):
 
     count = 0
     while not found:
-        randq = "?" + randomString(25) # appending a garbage string in order to cold cache
+        randq = "?" + randomString(25)
+        # garabgq = random.
         try:
             driver_.get(url + randq)
             soup = BeautifulSoup(driver_.page_source, "html.parser")
             this = soup.find(class_="content")
+            that = soup.find(class_="no-result")
 
-            if str(this.contents[1]) == "<p>You are not authorized to access this page.</p>":
-                # Wizards pages you can't access will consistently have this string. 
+            if str(this.contents[1]) == "<p>You are not authorized to access this page.</p>"\
+                    or str(that.contents[0]) == "\n        no result found      ":
                 print("same old same old")
+                time.sleep(5)
             else:
                 print("you're allowed acccess now")
                 found = True
             print(count)
-            
-            # if you want to limit your rate put a sleep somewhere in here 
             count += 1
 
         except:
-            time.sleep(20) # prevents request spam in error case
-    playsound('Kill Bill Ironside Siren Sound.mp3') # switch this with whatever
-    
-    time.sleep(1200) # sleep for 20 minutes, I'd recommend against using the browser window for anything, but you can if you wanna
+            found = True # fails loud in order to alert you of if your internet cuts out or the code otherwise fails, to avoid giving a false sense of security
+    playsound('Kill Bill Ironside Siren Sound.mp3')
+
+    time.sleep(1200)
 
     driver_.quit()
 
