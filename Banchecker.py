@@ -40,6 +40,8 @@ def banCheck(url):
         except:
             time.sleep(20) # prevents request spam in error case
     playsound('Kill Bill Ironside Siren Sound.mp3') # switch this with whatever
+    
+    time.sleep(1200) # sleep for 20 minutes, I'd recommend against using the browser window for anything, but you can if you wanna
 
     driver_.quit()
 
